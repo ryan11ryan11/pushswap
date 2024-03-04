@@ -6,7 +6,7 @@
 /*   By: junhhong <junhhong@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:50:56 by junhhong          #+#    #+#             */
-/*   Updated: 2024/02/26 15:41:48 by junhhong         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:31:41 by junhhong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	a_linking(Stack *a, Stackstructure *astruc, int *s, int argc)
 	int	target_loc_a;
 
 	printf("	a_linking start\n");
-	stack_check(a,a,s,argc);
+	//stack_check(a,a,s,argc);
 	prv_location = where_is(a, astruc->prv_target);
 	target_loc_a = where_is(a, astruc->target);
 	printf("\nstandard:%d\ntarget:%d\nprv_target:%d\nmid:%d\ntarget_location:%d\nprv_location:%d\na->data[a->top]:%d\n\n",astruc->standard,astruc->target,astruc->prv_target,astruc->mid,astruc->target_location,prv_location,a->data[a->top]);
@@ -80,7 +80,7 @@ void	a_linking(Stack *a, Stackstructure *astruc, int *s, int argc)
 	astruc->target_location ++ ;
 	astruc->prv_target = astruc->target;
 	astruc->target = s[astruc->target_location];
-	//stack_check(a,a,s,argc);
+	stack_check(a,a,s,argc);
 }
 
 void	a_target_buttom(Stack *a, Stackstructure *astruc, int *s)
@@ -130,10 +130,29 @@ int		checker(Stack *a)
 	return (i);
 }
 
+void	lineup(Stack *a)
+{
+	int i;
+
+	i = a->top;
+	while (i > 0)
+	{
+		if (a->data[a->top] > a->data[a->top--])
+			swap(a,'a');
+		else
+			stack_up(a,'a');
+		i -- ;
+	}
+}
+
 void	a_sort(Stack *a, int *s, int argc)
 {
 	Stackstructure	astruc;
+	t_list *a_order;
+	t_list *b_order;
 
+	a_order = NULL;
+	b_order = NULL;
 	a_sort_init(&astruc, s, argc, a);
 	a_target_buttom(a, &astruc, s); // 어떠한 경우에도 타겟은 스탠다드이다.
 	while (1)
@@ -142,6 +161,7 @@ void	a_sort(Stack *a, int *s, int argc)
 			break;
 		a_linking(a, &astruc, s, argc);
 	}
+	lineup(a);
 	printf("$$$$$$$$$$FINAL$$$$$$$$$$$$$$$$");
 	stack_check(a,a,s,argc);
 }

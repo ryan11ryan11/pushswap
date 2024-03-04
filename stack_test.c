@@ -6,11 +6,47 @@
 /*   By: junhhong <junhhong@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:50:56 by junhhong          #+#    #+#             */
-/*   Updated: 2024/02/26 15:32:56 by junhhong         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:47:01 by junhhong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+void	test(t_list *a_order)
+{
+	int	i;
+
+	i = 0;
+	// while(a_order != NULL)
+	// {
+	// 	printf("%s\n", a_order->content);
+	// 	a_order = a_order->next;
+	// }
+	while(a_order != NULL)
+	{
+		a_order = a_order->next;
+		i ++ ;
+	}
+	printf("order number :: %d\n", i);
+}
+
+void	center(char *order, int type) /// 나중에 메모리 누수 관리
+{
+	static t_list *a_order;
+	static t_list *b_order;
+	
+	if (type == 'a')
+	{
+		printf("%s\n", order);
+		ft_lstadd_back(&a_order, ft_lstnew(order));
+	}
+	if (type == 'b')
+	{
+		printf("%s\n", order);
+		ft_lstadd_back(&b_order, ft_lstnew(order));
+	}
+	test(a_order);
+}
 
 void	swap(Stack *s, int type)
 {
@@ -22,22 +58,22 @@ void	swap(Stack *s, int type)
 	s->data[s->top] = s->data[s->top - 1];
 	s->data[s->top - 1] = temp;
 	if (type == 'a')
-		ft_putstr_fd("sa\n", 1);
+		center("sa",'a');
 	if (type == 'b')
-		ft_putstr_fd("sb\n", 1);
+		center("sb",'b');
 }
 
-void	element_move(Stack *a, Stack *b, int type) // pa (push a): Take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
+void	element_move(Stack *a, Stack *b, int type)
 {
-	push(a, b->data[b->top]); // pa , 타입란에 첫번째 요소 (a,b,a) or (a,b,b) 뒤에있는(b 를 빼서 a에 꼭대기에 넣음
+	push(a, b->data[b->top]); // 뒤에있는 b 를 빼서 a에 꼭대기에 넣음
 	pop(b);
 	if (type == 'a')
-		ft_putstr_fd("pa\n", 1);
+		center("pa",'a');
 	if (type == 'b')
-		ft_putstr_fd("pb\n", 1);
+		center("pb",'b');
 }
 
-void	stack_up(Stack *s, int type) // Shift up all elements of stack a by 1. 
+void	stack_up(Stack *s, int type)
 {
 	int	i; // ra
 	int	temp;
@@ -53,13 +89,13 @@ void	stack_up(Stack *s, int type) // Shift up all elements of stack a by 1.
 	}
 	s->data[0] = temp;
 	if (type == 'a')
-	    ft_putstr_fd("ra\n", 1);
+	    center("ra",'a');
     if (type == 'b')
-        ft_putstr_fd("rb\n", 1);
+        center("rb",'b');
 }
 
 
-void	stack_down(Stack *s, int type) // Shift down all elements of stack a by 1.
+void	stack_down(Stack *s, int type)
 {
 	int	i; // rra
 	int	temp;
@@ -75,7 +111,7 @@ void	stack_down(Stack *s, int type) // Shift down all elements of stack a by 1.
 	}
 	s->data[s->top] = temp;
 	if (type == 'a')
-	    ft_putstr_fd("rra\n", 1);
+	    center("rra",'a');
     if (type == 'b')
-        ft_putstr_fd("rrb\n", 1);
+        center("rrb",'b');
 }

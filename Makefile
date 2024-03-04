@@ -6,7 +6,7 @@
 #    By: junhhong <junhhong@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 17:03:39 by junhhong          #+#    #+#              #
-#    Updated: 2024/02/26 15:22:08 by junhhong         ###   ########.fr        #
+#    Updated: 2024/02/27 12:49:11 by junhhong         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ LIBFT = libft/libft.a
 NAME = pushswap.a
 AR = ar -rcs
 
-SRC = pushswap stack_control stack_relocation_a stack_relocation_b asort stack_test
+SRC = pushswap asort stack_test stack_control
 
 SRCOBJ = $(addsuffix .o, $(SRC))
 

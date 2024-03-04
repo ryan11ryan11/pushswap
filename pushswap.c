@@ -6,7 +6,7 @@
 /*   By: junhhong <junhhong@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:59:30 by junhhong          #+#    #+#             */
-/*   Updated: 2024/02/26 15:31:26 by junhhong         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:14:10 by junhhong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ void	stack_devide(Stack *a, Stack *b, int *s, int argc)
 	int	i;
 	int	j;
 
+	printf("devide start\n");
 	i = 0;
 	j = a->top;
 	standard = s[(argc - 1) / 2];
-	//printf("argc:%d, a->top:%d, standard:%d\n",argc, a->top, standard);
+	printf("argc:%d, a->top:%d, standard:%d\n",argc, a->top, standard);
 	while (i <= j) // a->top = 8 (0~8 : 9개 숫자)
 	{
 		//printf("i::%d a::%d\n",i, a->data[a->top]);
@@ -187,8 +188,8 @@ int	main(int argc, char *argv[])
 
 	//stack_check(&a,&b,s,argc);
 	stack_devide(&a, &b, s, argc);
-	//printf("stack divided into a and b\n");
-	//stack_check(&a,&b,s,argc);
+	printf("stack divided into a and b\n");
+	stack_check(&a,&b,s,argc);
 
 	a_sort(&a, s, argc);
 	//printf("goto a_sort\n");
