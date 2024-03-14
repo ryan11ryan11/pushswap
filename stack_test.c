@@ -6,7 +6,7 @@
 /*   By: junhhong <junhhong@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:50:56 by junhhong          #+#    #+#             */
-/*   Updated: 2024/02/27 15:47:01 by junhhong         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:47:26 by junhhong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ void	center(char *order, int type) /// 나중에 메모리 누수 관리
 	
 	if (type == 'a')
 	{
-		printf("%s\n", order);
+		//printf("%s\n", order);
 		ft_lstadd_back(&a_order, ft_lstnew(order));
+		ft_lstadd_back(&b_order, ft_lstnew("skip"));
 	}
 	if (type == 'b')
 	{
-		printf("%s\n", order);
+		//printf("%s\n", order);
+		ft_lstadd_back(&a_order, ft_lstnew("skip"));
 		ft_lstadd_back(&b_order, ft_lstnew(order));
 	}
 	test(a_order);
@@ -52,6 +54,7 @@ void	swap(Stack *s, int type)
 {
 	int	temp;
 
+	printf("swap\n");
 	if (s->top < 1)
 		return ;
 	temp = s->data[s->top];
@@ -66,6 +69,7 @@ void	swap(Stack *s, int type)
 void	element_move(Stack *a, Stack *b, int type)
 {
 	push(a, b->data[b->top]); // 뒤에있는 b 를 빼서 a에 꼭대기에 넣음
+	printf("elementmove %d is moved\n", b->data[b->top]);
 	pop(b);
 	if (type == 'a')
 		center("pa",'a');

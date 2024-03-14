@@ -6,7 +6,7 @@
 /*   By: junhhong <junhhong@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:39:45 by junhhong          #+#    #+#             */
-/*   Updated: 2024/02/27 11:37:39 by junhhong         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:47:57 by junhhong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct stack
 {
-	int	data[MAX];
+	int	data[100];
 	int	top;
 }Stack;
 
